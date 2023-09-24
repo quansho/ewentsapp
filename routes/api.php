@@ -3,12 +3,12 @@
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\Register;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\v1\User\Index as UsersIndex;
-use App\Http\Controllers\Api\v1\User\Store as UsersStore;
-use App\Http\Controllers\Api\v1\User\Delete as UserDelete;
+use App\Http\Controllers\Api\v1\User\Show as UsersShow;
 
 use \App\Http\Controllers\Api\v1\Event\Index as EventIndex;
 use \App\Http\Controllers\Api\v1\Event\Store as EventStore;
@@ -32,8 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::get('/', UsersIndex::class);
-        Route::post('/', UsersStore::class);
-        Route::delete('/{user}', UserDelete::class);
+        Route::get('/{user}', UsersShow::class);
     });
 
     Route::prefix('events')->group(function () {

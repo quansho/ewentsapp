@@ -6,14 +6,7 @@ use App\Http\Requests\ApiRequest;
 
 /**
  * Class UserRegister
- * @bodyParam first_name string required
- * @bodyParam last_name string required
- * @bodyParam email string required
- * @bodyParam password string required
- * @bodyParam password_confirmation string required
- * @bodyParam role_flag string required Может быть одно из двух, если регистрируем рабочего "worker", если держателя компании "owner"
- * @bodyParam company_title string Это поле обязательно, если role_flag является owner.
- * @package App\Http\Requests
+ * @package App\Http\Requests\Event
  */
 class SubscribeToEventRequest extends ApiRequest
 {
@@ -24,7 +17,7 @@ class SubscribeToEventRequest extends ApiRequest
      */
     public function authorize()
     {
-        return true;
+        return Gate::allows('subscribe');
     }
 
     /**

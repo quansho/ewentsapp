@@ -7,6 +7,10 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
+/**
+ * Class ApiRequest
+ * @package App\Http\Requests
+ */
 class ApiRequest extends FormRequest
 {
     protected function failedValidation(Validator $validator) {

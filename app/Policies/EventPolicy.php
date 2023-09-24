@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**
- * Class UserPolicy
+ * Class EventPolicy
  * @package App\Policies
  */
 class EventPolicy
@@ -31,5 +31,10 @@ class EventPolicy
     public function delete(User $user,Event $event)
     {
         return $user->id === $event->author_id;
+    }
+
+    public function subscribe(User $user, Event $event)
+    {
+        return $user->id !== $event->author_id;
     }
 }

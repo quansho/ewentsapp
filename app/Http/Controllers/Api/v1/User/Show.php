@@ -20,31 +20,6 @@ class Show extends Controller
     {
         $this->authorize('show', $user);
 
-        if(auth()->user()->hasRole('owner')) {
-            $company = auth()->user()->company()->first();
-            $userLogs = $user->logs()
-                ->where('company_id', auth()->user()->company()->first()->id)
-                ->get()
-                ->toArray();
-
-            if ($user->hasRole('worker') && empty($userLogs)) {
-                $status = Status::where('title', 'Viewed')->first();
-
-                $log = new UserLog();
-                $log->user()->associate($user);
-                $log->status()->associate($status);
-                $log->company()->associate($company);
-                $log->save();
-            }
-        }
-
-        $alerts = match ($user->getRoleNames()->first()) {
-            'worker' => $user->alerts()->get(),
-            default => $user->company()->first()->alerts()->get()
-        };
-
-        $user->alerts = $alerts;
-
         return response()->json(new UserResource($user));
     }
 }
