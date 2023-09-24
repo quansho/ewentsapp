@@ -5,7 +5,7 @@ namespace App\Http\Requests\Event;
 use App\Http\Requests\ApiRequest;
 
 /**
- * Class UserRegister
+ * Class SubscribeToEventRequest
  * @package App\Http\Requests\Event
  */
 class SubscribeToEventRequest extends ApiRequest
@@ -19,16 +19,5 @@ class SubscribeToEventRequest extends ApiRequest
     {
         return Gate::allows('subscribe');
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [];
-    }
-
 
 }

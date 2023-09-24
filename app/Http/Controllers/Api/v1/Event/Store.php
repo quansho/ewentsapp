@@ -24,6 +24,6 @@ class Store extends Controller
         $event->author()->associate(auth()->user());
         $event->save();
 
-        return response()->json(new EventResource($event), 201);
+        return response()->json($this->toResponseWithStruct(new EventResource($event)),201);
     }
 }

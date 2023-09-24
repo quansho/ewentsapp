@@ -27,8 +27,8 @@ class Index extends Controller
     {
         $events = Event::query()->paginate(10);
 
-        return response()->json(EventResource::collection($events)->response()->getData());
-    }
+        return response()->json($this->toResponseWithStruct(EventResource::collection($events)->response()->getData()));
 
+    }
 
 }

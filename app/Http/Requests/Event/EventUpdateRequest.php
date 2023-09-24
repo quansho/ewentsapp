@@ -17,7 +17,7 @@ class EventStoreRequest extends ApiRequest
      */
     public function authorize()
     {
-        return true;
+        return Gate::allows('update');
     }
 
     /**
@@ -28,8 +28,8 @@ class EventStoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|regex:/[а-яА-Яa-zA-Z_ ]*$/',
-            'description' => 'required|string|regex:/[а-яА-Яa-zA-Z_ ]*$/|max:1000',
+            'title' => 'string|regex:/[а-яА-Яa-zA-Z_ ]*$/',
+            'description' => 'string|regex:/[а-яА-Яa-zA-Z_ ]*$/|max:1000',
         ];
     }
 

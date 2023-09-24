@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Auth;
 class Register extends Controller
 {
     /**
-     * @group Auth Endpoints
      * @param UserRegister $request
      * @return JsonResponse
      */

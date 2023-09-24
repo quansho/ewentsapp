@@ -19,6 +19,6 @@ class Show extends Controller
     {
         $this->authorize('show', $event);
 
-        return response()->json(new EventResource($event));
+        return response()->json($this->toResponseWithStruct(new EventResource($event)));
     }
 }

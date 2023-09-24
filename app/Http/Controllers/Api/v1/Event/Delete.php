@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 /**
  * Class Delete
- * @group Users Endpoints
  * @authenticated
  * @package App\Http\Controllers\Api\v1\Event
  */

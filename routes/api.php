@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\v1\User\Index as UsersIndex;
 use App\Http\Controllers\Api\v1\User\Show as UsersShow;
+use App\Http\Controllers\Api\v1\User\Events as UsersEvents;
 
 use \App\Http\Controllers\Api\v1\Event\Index as EventIndex;
 use \App\Http\Controllers\Api\v1\Event\Store as EventStore;
@@ -28,11 +29,17 @@ use \App\Http\Controllers\Api\v1\Event\Subscribe as EventSubscribe;
 |
 */
 
+
+Route::post('login', [Login::class, '__invoke']);
+Route::post('logout', [Logout::class, '__invoke']);
+Route::post('register', [Register::class, '__invoke']);
+
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::get('/', UsersIndex::class);
         Route::get('/{user}', UsersShow::class);
+        Route::get('/{user}/events', UsersEvents::class);
     });
 
     Route::prefix('events')->group(function () {
@@ -45,6 +52,3 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-Route::post('login', [Login::class, '__invoke']);
-Route::post('logout', [Logout::class, '__invoke']);
-Route::post('register', [Register::class, '__invoke']);

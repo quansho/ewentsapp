@@ -16,10 +16,6 @@ use Illuminate\Validation\ValidationException;
 class Login extends Controller
 {
     /**
-     * @group Auth Endpoints
-     * @param Request $request
-     * @bodyParam email string required
-     * @bodyParam password string required
      * @return array|JsonResponse
      * @throws ValidationException
      */

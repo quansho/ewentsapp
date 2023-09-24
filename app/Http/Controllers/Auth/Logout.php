@@ -7,7 +7,6 @@ use Illuminate\Http\JsonResponse;
 
 /**
  * Class Logout
- * @group Auth Endpoints
  * @authenticated
  * @package App\Http\Controllers\Auth
  */

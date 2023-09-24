@@ -17,14 +17,14 @@ use Illuminate\Http\JsonResponse;
 class Update extends Controller
 {
     /**
-     * PUT api/user/{user?}
+     * PUT api/events/{event}
      *
-     * Method for updating information about users, if the user updates himself, it is not necessary to specify the user_id
+     * Method for updating information about event
      */
-    public function __invoke(UserUpdateRequest $request, Event $event): JsonResponse
+    public function __invoke(EventUpdateRequest $request, Event $event): JsonResponse
     {
        $event->update($request->validated());
 
-        return response()->json(new EventResource($event));
+       return response()->json($this->toResponseWithStruct(new EventResource($event)));
     }
 }
