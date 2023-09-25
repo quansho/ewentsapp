@@ -18,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasRole('admin');
+//        return $user->hasRole('admin');
     }
 
     public function update(User $user, User $userToUpdate)

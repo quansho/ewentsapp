@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1\Event;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Event\SubscribeToEventRequest;
+use App\Http\Controllers\ApiController as Controller;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
+use App\Models\Subscription;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 /**
  * Class Subscribe
@@ -15,10 +17,14 @@ use Illuminate\Http\JsonResponse;
  */
 class Subscribe extends Controller
 {
-    public function __invoke(SubscribeToEventRequest $request, Event $event): JsonResponse
+    /**
+     * @throws AuthorizationException
+     */
+    public function __invoke(Request $request, Event $event): JsonResponse
     {
+        $this->authorize('subscribe',$event);
 
-        if ($this->isUserSubscribedTo($event)) {
+        if (Subscription::query()->isSubscribed($event->id)) {
             $event->subscribers()->detach(auth()->user());
         } else {
             $event->subscribers()->attach(auth()->user());
@@ -27,13 +33,5 @@ class Subscribe extends Controller
 
         return response()->json($this->toResponseWithStruct(new EventResource($event)),201);
 
-    }
-
-    private function isUserSubscribedTo($event)
-    {
-        return $event->subscribers()
-                ->where('subscriber_id', auth()->user()->id)
-                ->whereHas('events', function ($q) use ($event) {$q->where('i', $event->id);})
-                ->exists();
     }
 }

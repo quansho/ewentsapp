@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-
 class ApiController extends Controller
 {
 
-    public function toResponseWithStruct($result)
+    public function toResponseWithStruct($result): array
     {
-        return ['error'=>session()->errors(), 'result'=>$result];
+        return ['error'=>session()->get('errors'), 'result'=>$result];
     }
 }

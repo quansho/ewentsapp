@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Subscription;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EventResource extends JsonResource
@@ -14,7 +15,15 @@ class EventResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+                "id"=>$this->id,
+                "title"=>$this->title,
+                "description"=>$this->description,
+                "author"=>new UserResource($this->author),
+                "subscribed"=>Subscription::query()->isSubscribed($this->id),
+                "created_at"=>$this->created_at,
+                "updated_at"=>$this->updated_at,
+        ];
 
     }
 }

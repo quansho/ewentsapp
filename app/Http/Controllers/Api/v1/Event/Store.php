@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1\Event;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController as Controller;
 use App\Http\Requests\Event\EventStoreRequest;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
@@ -25,5 +25,6 @@ class Store extends Controller
         $event->save();
 
         return response()->json($this->toResponseWithStruct(new EventResource($event)),201);
+
     }
 }

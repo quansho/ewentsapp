@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\Api\v1\Event;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController as Controller;
 
-use App\Http\Resources\ErrorResource;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 /**
  * Class Index

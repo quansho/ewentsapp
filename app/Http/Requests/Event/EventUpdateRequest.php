@@ -3,12 +3,13 @@
 namespace App\Http\Requests\Event;
 
 use App\Http\Requests\ApiRequest;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * Class EventStoreRequest
  * @package App\Http\Requests\Event
  */
-class EventStoreRequest extends ApiRequest
+class EventUpdateRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.

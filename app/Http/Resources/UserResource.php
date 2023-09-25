@@ -20,10 +20,8 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'lastname' => $this->lastname,
-            'login' => $this->login,
             'birth' => $this->lastname,
             'registered' => $this->created_at,
-
         ];
 
         if(!empty(self::$plainTextToken))

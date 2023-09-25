@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Api\v1\Event;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\User\UserUpdateRequest;
+use App\Http\Controllers\ApiController as Controller;
+use App\Http\Requests\Event\EventUpdateRequest;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -26,5 +25,6 @@ class Update extends Controller
        $event->update($request->validated());
 
        return response()->json($this->toResponseWithStruct(new EventResource($event)));
+
     }
 }
