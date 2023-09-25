@@ -13,14 +13,6 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user)
-    {
-//        return $user->hasRole('admin');
-    }
-
     public function update(User $user, User $userToUpdate)
     {
         return $user->id === $userToUpdate->id;
