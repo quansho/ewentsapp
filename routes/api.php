@@ -34,6 +34,14 @@ Route::post('login', [Login::class, '__invoke']);
 Route::post('logout', [Logout::class, '__invoke']);
 Route::post('register', [Register::class, '__invoke']);
 
+Route::prefix('events')->group(function () {
+    Route::get('/', EventIndex::class);
+    Route::post('/', EventStore::class);
+    Route::get('/{event}', EventShow::class);
+    Route::put('/{event}', EventUpdate::class);
+    Route::delete('/{event}', EventDelete::class);
+    Route::post('/{event}/subscribe', EventSubscribe::class);
+});
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('users')->group(function () {
@@ -42,13 +50,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{user}/events', UsersEvents::class);
     });
 
-    Route::prefix('events')->group(function () {
-        Route::get('/', EventIndex::class);
-        Route::post('/', EventStore::class);
-        Route::get('/{event}', EventShow::class);
-        Route::put('/{event}', EventUpdate::class);
-        Route::delete('/{event}', EventDelete::class);
-        Route::post('/{event}/subscribe', EventSubscribe::class);
-    });
+
 });
 

@@ -18,7 +18,7 @@ class Subscription extends Model
 
     public function scopeCurrentUser($query,$eventId)
     {
-        return $query->where('subscriber_id', auth()->user()->id)->where('event_id',$eventId);
+        return $query->where('subscriber_id', 1)->where('event_id',$eventId);
     }
 
     public function scopeIsSubscribed($query,$eventId)

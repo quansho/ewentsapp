@@ -20,7 +20,7 @@ class EventResource extends JsonResource
                 "title"=>$this->title,
                 "description"=>$this->description,
                 "author"=>new UserResource($this->author),
-                "subscribed"=>Subscription::query()->isSubscribed($this->id),
+//                "subscribed"=>Subscription::query()->isSubscribed($this->id),
                 "created_at"=>$this->created_at,
                 "updated_at"=>$this->updated_at,
         ];
